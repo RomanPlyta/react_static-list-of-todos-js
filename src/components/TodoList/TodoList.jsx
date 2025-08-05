@@ -1,10 +1,10 @@
-import usersFromServer from '../../api/users.json';
+import todosFromServer from '../../api/todos.json';
 import { TodoInfo } from '../TodoInfo/TodoInfo';
 
 export const TodoList = () => (
   <section className="TodoList">
-    {usersFromServer.map(user => (
-      <TodoInfo key={user.id} user={user} />
+    {todosFromServer.map(todo => (
+      <TodoInfo key={todo.id} todo={todo} />
     ))}
   </section>
 );

@@ -1,16 +1,15 @@
-import todosFromServer from '../../api/todos.json';
+import usersFromServer from '../../api/users.json';
 import { UserInfo } from '../UserInfo/UserInfo';
 
-export const TodoInfo = ({ user }) => (
-  <article className="TodoInfo TodoInfo--completed">
-    {todosFromServer
-      .filter(todo => todo.userId === user.id)
-      .map(todo => (
-        <h2 key={todo.id} className="TodoInfo__title">
-          {todo.title}
-        </h2>
-      ))}
+export const TodoInfo = ({ todo }) => {
+  // eslint-disable-next-line no-shadow
+  const user = usersFromServer.find(user => user.id === todo.userId);
 
-    <UserInfo user={user} />
-  </article>
-);
+  return (
+    <article className="TodoInfo TodoInfo--completed">
+      <h2 className="TodoInfo__title">{todo.title}</h2>
+
+      {user && <UserInfo key={user.id} user={user} />}
+    </article>
+  );
+};
